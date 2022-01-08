@@ -1,4 +1,4 @@
-# deepstream-python-rtsp-h264
+# deepstream python rtsp video h264 or gstreamer python rtsp h264 | h264
 
 deepstream python play rtsp h264 \n
 
