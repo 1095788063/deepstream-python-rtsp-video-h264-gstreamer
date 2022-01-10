@@ -26,7 +26,7 @@ def main(rtsp):
     source = Gst.ElementFactory.make("rtspsrc", "src")
     source.set_property("short-header", "true")
     source.set_property("location", rstp)
-
+    source.set_property("latency", 0)  # 缓存时间毫秒
     source.connect("pad-added", on_pad_added, queue1)
 
     depay = Gst.ElementFactory.make("rtph265depay", "depay")

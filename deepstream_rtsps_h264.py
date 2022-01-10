@@ -360,10 +360,10 @@ def main(rtsps, width, height, tiler_rows, tiler_columns, TILED_OUTPUT_WIDTH, TI
 
 if __name__ == '__main__':
     rstps = []
-    rstps.append('rtsp://admin:123456789a@192.168.2.71:554/cam/realmonitor?channel=1&subtype=0')
-    rstps.append('rtsp://admin:123456789a@192.168.2.71:554/cam/realmonitor?channel=1&subtype=1')
-    rstps.append('rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/main/av_stream')
-    rstps.append('rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/sub/av_stream')
+    rstps.append('rtsp://admin:123456789a@192.168.2.66:554/cam/realmonitor?channel=1&subtype=0')
+    rstps.append('rtsp://admin:123456789a@192.168.2.66:554/cam/realmonitor?channel=1&subtype=1')
+    # rstps.append('rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/main/av_stream')
+    # rstps.append('rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/sub/av_stream')
     width = 1280
     height = 720
     tiler_rows = 2

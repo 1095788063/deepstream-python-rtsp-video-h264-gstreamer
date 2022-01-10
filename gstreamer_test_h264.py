@@ -26,7 +26,7 @@ def main(rtsp):
     source = Gst.ElementFactory.make("rtspsrc", "src")
     source.set_property("short-header", "true")
     source.set_property("location", rstp)
-
+    source.set_property("latency", 0)  # 缓存时间毫秒
     source.connect("pad-added", on_pad_added, queue1)
 
     depay = Gst.ElementFactory.make("rtph264depay", "depay")
@@ -62,7 +62,7 @@ def main(rtsp):
     pipe.set_state(Gst.State.NULL)
 
 if __name__ == '__main__':
-    rstp = 'rtsp://admin:123456789a@192.168.2.71:554/cam/realmonitor?channel=1&subtype=0'
+    #rstp = 'rtsp://admin:123456789a@192.168.2.71:554/cam/realmonitor?channel=1&subtype=0'
     rstp = 'rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/main/av_stream'
     main(rstp)
     sys.exit()

@@ -163,6 +163,7 @@ def tiler_src_pad_buffer_probe(pad, info, u_data):
 
     return Gst.PadProbeReturn.OK
 
+
 def on_pad_added(element, element_src_pad, data):
     print("In cb_newpad\n");
     caps = element_src_pad.get_current_caps()
@@ -205,7 +206,7 @@ def main(rtsp):
     if not source:
         sys.stderr.write(" Unable to create Source \n")
     source.set_property("short-header", "true")
-
+    source.set_property("latency", 0)  # 缓存时间毫秒
     depay = Gst.ElementFactory.make('rtph264depay', "depay")
     if not depay:
         sys.stderr.write(" Unable to create depayer \n")
@@ -258,8 +259,6 @@ def main(rtsp):
     if not sink:
         sys.stderr.write(" Unable to create egl sink \n")
 
-
-
     source.set_property('location', rtsp)
     streammux.set_property('width', 1280)
     streammux.set_property('height', 720)
@@ -296,7 +295,6 @@ def main(rtsp):
         sys.stderr.write(" Unable to get source pad of decoder \n")
     srcpad.link(sinkpad)
 
-
     streammux.link(pgie)
     pgie.link(nvvidconv)
     nvvidconv.link(nvosd)
@@ -328,7 +326,8 @@ def main(rtsp):
 
 
 if __name__ == '__main__':
-    #rstp = 'rtsp://admin:123456789a@192.168.2.71:554/cam/realmonitor?channel=1&subtype=0'
-    rstp = 'rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/sub/av_stream'
+    # rstp = 'rtsp://admin:123456789a@192.168.2.66:554/cam/realmonitor?channel=1&subtype=0'
+    # rstp = 'rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/sub/av_stream'
+    rstp = 'rtsp://admin:123456789a@192.168.2.3:554/h264/ch1/main/av_stream'
     main(rstp)
     sys.exit()
